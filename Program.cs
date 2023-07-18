@@ -1,10 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using StarWarsPlanets.Models;
 using StarWarsPlanets.Database; 
+using StarWarsPlanets.Querys;
+using StarWarsPlanets.Interfaces;
+using StarWarsPlanets.Integrations;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<StarWarsPlanetsDB>(opt => opt.UseInMemoryDatabase("StarWarsPlanets"));
-// builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(IPlanetsRepository).Assembly);
+});
+builder.Services.AddTransient<IPlanetsRepository, PlanetsRepository>();
+builder.Services.AddHttpClient();
 
 // Enable detailed error page during development
 if (builder.Environment.IsDevelopment())
@@ -15,9 +26,19 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// // Get all of the planets
-// app.MapGet("/todoitems", async (TodoDb db) =>
-//     await db.Todos.ToListAsync());
+// Get all of the planets
+app.MapGet("/planets", async (IMediator mediator) =>
+{
+  try
+  {
+    Console.WriteLine("Trying to get planets");
+    return Results.Ok(await mediator.Send(new GetPlanetsQuery()));
+  }
+  catch (System.Exception ex)
+  {
+    throw new Exception($"Problem getting planets {ex.StackTrace}");
+  }
+});
 
 
 // // Get a list of favourited planets
