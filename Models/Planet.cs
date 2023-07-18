@@ -16,6 +16,7 @@ namespace StarWarsPlanets.Models
     public string? Created  {get; set;}
     public string? Edited  {get; set;}
     public string? URL  {get; set;}
+    public bool favourited {get; set;}
 
   }
 }
