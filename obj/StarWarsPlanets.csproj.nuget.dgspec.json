@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/StarWarsPlanets.csproj": {}
+    "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/StarWarsPlanets.csproj": {}
   },
   "projects": {
-    "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/StarWarsPlanets.csproj": {
+    "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/StarWarsPlanets.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/StarWarsPlanets.csproj",
+        "projectUniqueName": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/StarWarsPlanets.csproj",
         "projectName": "StarWarsPlanets",
-        "projectPath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/StarWarsPlanets.csproj",
+        "projectPath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/StarWarsPlanets.csproj",
         "packagesPath": "/Users/raeesaparker/.nuget/packages/",
-        "outputPath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/obj/",
+        "outputPath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/raeesaparker/.nuget/NuGet/NuGet.Config"
@@ -38,6 +38,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

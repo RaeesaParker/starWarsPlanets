@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "7jGMw3iunEA8+17DlQXBmAPb4SBSVQv0vRThs145E5UG2XjyFFM8lZDyBnYI7Tx2wF8A8LaoQjL2jU+rP0SW1Q==",
+  "dgSpecHash": "KG3shW8OxKj0KGSNp9VoI4mvSdSGY6FKXtT/se5xPLgHRhgoaThR806kWu04HSkuE112iz4ZfLRK8R5A5KGhmA==",
   "success": true,
-  "projectFilePath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/StarWarsPlanets/StarWarsPlanets.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/raeesaparker/Documents/Documents/raeesa/Web/csharp/dotnet/starwars/StarWarsPlanets/StarWarsPlanets.csproj",
+  "expectedPackageFiles": [
+    "/Users/raeesaparker/.nuget/packages/microsoft.entityframeworkcore/7.0.9/microsoft.entityframeworkcore.7.0.9.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.9/microsoft.entityframeworkcore.abstractions.7.0.9.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.9/microsoft.entityframeworkcore.analyzers.7.0.9.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.9/microsoft.entityframeworkcore.inmemory.7.0.9.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.logging/7.0.0/microsoft.extensions.logging.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "/Users/raeesaparker/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
