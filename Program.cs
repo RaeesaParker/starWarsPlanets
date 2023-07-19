@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using StarWarsPlanets.Models;
 using StarWarsPlanets.Database; 
 using StarWarsPlanets.Querys;
+using StarWarsPlanets.Commands;
 using StarWarsPlanets.Interfaces;
 using StarWarsPlanets.Integrations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<StarWarsPlanetsDB>(opt => opt.UseInMemoryDatabase("StarWarsPlanets"));
@@ -17,7 +16,6 @@ builder.Services.AddMediatR(cfg => {
 builder.Services.AddTransient<IPlanetsRepository, PlanetsRepository>();
 builder.Services.AddHttpClient();
 
-// Enable detailed error page during development
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -26,12 +24,11 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// Get all of the planets
+// Get all of the planets from API
 app.MapGet("/planets", async (IMediator mediator) =>
 {
   try
   {
-    Console.WriteLine("Trying to get planets");
     return Results.Ok(await mediator.Send(new GetPlanetsQuery()));
   }
   catch (System.Exception ex)
@@ -41,33 +38,59 @@ app.MapGet("/planets", async (IMediator mediator) =>
 });
 
 
-// // Get a list of favourited planets
-// app.MapGet("/todoitems/complete", async (TodoDb db) =>
-//     await db.Todos.Where(t => t.IsComplete).ToListAsync());
+// Get a list of favourited planets
+app.MapGet("/planets/favourites", async (IMediator mediator) =>
+{
+  try
+  {
+    return Results.Ok(await mediator.Send(new GetFavsQuery()));
+  }
+  catch (System.Exception ex)
+  {
+    throw new Exception($"Problem getting favourite planets {ex.StackTrace}");
+  }
+});
 
 
+// Get a single planet from favourite 
+app.MapGet("/planets/favourites/{planetId}", async (IMediator mediator, [FromRoute] long planetId) =>
+{
+  try
+  {
+    return Results.Ok(await mediator.Send(new GetFavQuery(planetId)));
+  }
+  catch (System.Exception ex)
+  {
+    throw new Exception($"Problem getting favourite planet {ex.StackTrace}");
+  }
+});
 
-// // Add a planet to the favourites
-// app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
-// {
-//     db.Todos.Add(todo);
-//     await db.SaveChangesAsync();
 
-//     return Results.Created($"/todoitems/{todo.Id}", todo);
-// });
+// Add a planet to the favourites
+app.MapPost("/planets/favourites/{planetId}", async (IMediator mediator, [FromRoute] int planetId ) =>
+{
+ try
+  {
+    return Results.Ok(await mediator.Send(new PostFavouriteCommand(planetId)));
+  }
+  catch (System.Exception ex)
+  {
+    throw new Exception($"Problem posting planets {ex.StackTrace}");
+  }
+});
 
 
-// // Remove planet from favourite
-// app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
-// {
-//     if (await db.Todos.FindAsync(id) is Todo todo)
-//     {
-//         db.Todos.Remove(todo);
-//         await db.SaveChangesAsync();
-//         return Results.Ok(todo);
-//     }
-
-//     return Results.NotFound();
-// });
+// Remove planet from favourite
+app.MapDelete("/planets/favourites/{planetId}", async (IMediator mediator, [FromRoute] long planetId) =>
+{
+  try
+  {
+    return Results.Ok(await mediator.Send(new DeleteFavouriteCommand(planetId)));
+  }
+  catch (System.Exception ex)
+  {
+    throw new Exception($"Problem deleting planets {ex.StackTrace}");
+  }
+});
 
 app.Run();

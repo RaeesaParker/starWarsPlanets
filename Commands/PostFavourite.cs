@@ -6,11 +6,11 @@ namespace StarWarsPlanets.Commands
 {
   public class PostFavouriteCommand : IRequest<StarWarsPlanet>
   {
-    public StarWarsPlanet Planet {get; private set;}
+    public int PlanetId {get; private set;}
 
-    public PostFavouriteCommand(StarWarsPlanet planet)
+    public PostFavouriteCommand(int planetId)
     {
-      Planet = planet; 
+      PlanetId = planetId; 
     }
   }
 
@@ -26,7 +26,27 @@ namespace StarWarsPlanets.Commands
     }
     public  async Task<StarWarsPlanet> Handle(PostFavouriteCommand request, CancellationToken cancellationToken)
     {
-      return null ; 
+      StarWarsPlanet planet = await _planetRepo.Get(request.PlanetId);
+      
+      // Check if the planet has already been favourited 
+      List<StarWarsPlanet> favouritedPlanets = await _planetRepo.GetFavPlanets();
+      StarWarsPlanet APIPlanet = await _planetRepo.Get(request.PlanetId);
+      
+      StarWarsPlanet foundPlanet = favouritedPlanets.Find(planet => planet.name == APIPlanet.name);
+
+      if(foundPlanet != null)
+      {
+        Console.WriteLine("Planet has already been favourited");
+        throw new Exception();
+      } 
+      else
+      {
+        StarWarsPlanet savedPlanet = await _planetRepo.PostFav(planet);
+
+        if (savedPlanet == null) throw new Exception("Error saving planet");
+        else return savedPlanet ;
+      }
+ 
     }
   }
 }
