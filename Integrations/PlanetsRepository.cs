@@ -3,7 +3,6 @@ using StarWarsPlanets.Models;
 using StarWarsPlanets.Interfaces; 
 using StarWarsPlanets.Database;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace StarWarsPlanets.Integrations
 {
@@ -33,6 +32,7 @@ namespace StarWarsPlanets.Integrations
       else throw new Exception("Error: response from API has failes"); 
     }
 
+
     public async Task<StarWarsPlanet> Get(int planetId)
     {
       var httpClient = _httpClientFactory.CreateClient(); 
@@ -48,6 +48,7 @@ namespace StarWarsPlanets.Integrations
       else throw new Exception("Error: response from API has failes"); 
     }
 
+
     public async Task<List<StarWarsPlanet>> GetFavPlanets()
     {
       return await _dbContext.Planets.ToListAsync();
@@ -59,8 +60,8 @@ namespace StarWarsPlanets.Integrations
       StarWarsPlanet planet = await _dbContext.Planets.FindAsync(planetId);
       if (planet == null) throw new Exception("The planet does not exist");
       else return planet;
-
     }
+
 
     public async Task<StarWarsPlanet> PostFav(StarWarsPlanet planet)
     {
@@ -70,6 +71,7 @@ namespace StarWarsPlanets.Integrations
       StarWarsPlanet savedPlanet = await GetFavPlanet(planet.Id);
       return savedPlanet;
     }
+
 
     public async Task<StarWarsPlanet> DeleteFav(long planetId)
     {
@@ -81,6 +83,5 @@ namespace StarWarsPlanets.Integrations
       }
       else throw new Exception ("Planet not found");
     }
-
   }
 }

@@ -1,5 +1,3 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 namespace StarWarsPlanets.Models
 {
   public class StarWarsPlanet
@@ -20,10 +18,10 @@ namespace StarWarsPlanets.Models
   }
 
   public class StarWarsPlanetResponse
-{
-    public int? Count { get; set; } 
-    public string? Next { get; set; } 
-    public string? Previous { get; set; } 
-    public List<StarWarsPlanet>? Results { get; set; }
-}
+  {
+      public int? Count { get; set; } 
+      public string? Next { get; set; } 
+      public string? Previous { get; set; } 
+      public List<StarWarsPlanet>? Results { get; set; }
+  }
 }
